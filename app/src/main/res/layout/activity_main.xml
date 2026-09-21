@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#0A0A0C">
+
+    <!-- Header Bar -->
+    <RelativeLayout
+        android:id="@+id/layout_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="24dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="10dp">
+
+        <!-- Left: Logo & Brand -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true">
+
+            <View
+                android:layout_width="8dp"
+                android:layout_height="24dp"
+                android:background="#FF2A6D"
+                android:layout_marginRight="10dp" />
+
+            <TextView
+                android:id="@+id/tv_app_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TV LIVE"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.15" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="STREAM ENGINE"
+                android:textColor="#5AFFFFFF"
+                android:textSize="10sp"
+                android:layout_marginLeft="8dp"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="3dp"
+                android:letterSpacing="0.1" />
+        </LinearLayout>
+
+        <!-- Right: Status IP Pill -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true">
+
+            <!-- Active Status Pill (Focusable / Clickable for Scan QR / Remote Import) -->
+            <LinearLayout
+                android:id="@+id/btn_header_remote"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/footer_bar_selector"
+                android:paddingHorizontal="14dp"
+                android:paddingVertical="6dp"
+                android:layout_marginRight="16dp"
+                android:focusable="true"
+                android:clickable="true">
+
+                <View
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:background="@drawable/glowing_dot"
+                    android:layout_marginRight="8dp" />
+
+                <TextView
+                    android:id="@+id/tv_remote_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="http://获取IP中..."
+                    android:textColor="#05D9E8"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:fontFamily="monospace" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_clock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="22:45"
+                android:textColor="#5AFFFFFF"
+                android:textSize="12sp"
+                android:fontFamily="monospace" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <!-- Main Content Split Area -->
+    <LinearLayout
+        android:id="@+id/layout_main_split"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="8dp"
+        android:baselineAligned="false">
+
+        <!-- Left Column: Channel List (28% weight) -->
+        <LinearLayout
+            android:id="@+id/layout_sidebar"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.28"
+            android:orientation="vertical"
+            android:layout_marginRight="8dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="CATEGORIES / CHANNELS"
+                android:textColor="#3AFFFFFF"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.05"
+                android:paddingHorizontal="12dp"
+                android:layout_marginBottom="12dp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_channels"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="none"
+                android:overScrollMode="never" />
+        </LinearLayout>
+
+        <!-- Right Column: Video View Frame (72% weight) -->
+        <FrameLayout
+            android:id="@+id/layout_player_container"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.72"
+            android:layout_marginLeft="8dp">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_view_player"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="#000000"
+                app:cardPreventCornerOverlap="true">
+
+                <FrameLayout
+                    android:id="@+id/layout_player_focus"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:clickable="true"
+                    android:background="@drawable/player_focus_selector">
+
+                    <androidx.media3.ui.PlayerView
+                        android:id="@+id/player_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        app:use_controller="false"
+                        app:resize_mode="fit"
+                        app:shutter_background_color="#000000" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/radial_overlay" />
+
+                    <ProgressBar
+                        android:id="@+id/progress_loader"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_gravity="center"
+                        android:indeterminate="true"
+                        android:indeterminateTint="#FFFFFF"
+                        android:visibility="gone" />
+
+                    <LinearLayout
+                        android:id="@+id/layout_playback_info"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:orientation="vertical"
+                        android:background="@drawable/gradient_bottom_overlay"
+                        android:padding="24dp"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="正在放映 • LIVE STREAM"
+                            android:textColor="#8AFFFFFF"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            android:letterSpacing="0.1" />
+
+                        <TextView
+                            android:id="@+id/tv_now_playing_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="频道名称"
+                            android:textColor="#FFFFFF"
+                            android:textSize="22sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="6dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layout_no_video_placeholder"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="32dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="📺"
+                            android:textSize="56sp"
+                            android:alpha="0.8" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="暂无直播源，请使用手机配置"
+                            android:textColor="#8AFFFFFF"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="16dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="在浏览器中打开上方地址添加 M3U8 链接"
+                            android:textColor="#4DFFFFFF"
+                            android:textSize="12sp"
+                            android:layout_marginTop="6dp" />
+                    </LinearLayout>
+
+                </FrameLayout>
+            </androidx.cardview.widget.CardView>
+        </FrameLayout>
+    </LinearLayout>
+
+    <!-- Bottom Footer Pill -->
+    <LinearLayout
+        android:id="@+id/layout_footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingTop="10dp"
+        android:paddingBottom="20dp"
+        android:orientation="horizontal">
+
+        <!-- Settings Button -->
+        <LinearLayout
+            android:id="@+id/btn_footer_settings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/footer_bar_selector"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="10dp"
+            android:focusable="true"
+            android:clickable="true"
+            android:layout_marginRight="12dp">
+
+            <View
+                android:layout_width="6dp"
+                android:layout_height="6dp"
+                android:background="@drawable/glowing_dot_blue"
+                android:layout_marginRight="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="⚙️ 智优设置与大盘"
+                android:textColor="#C2C2DD"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Dedicated QR Scan & Remote Import Button -->
+        <LinearLayout
+            android:id="@+id/btn_footer_remote_import"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/footer_bar_selector"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="10dp"
+            android:focusable="true"
+            android:clickable="true"
+            android:layout_marginRight="16dp">
+
+            <View
+                android:layout_width="6dp"
+                android:layout_height="6dp"
+                android:background="@drawable/glowing_dot"
+                android:layout_marginRight="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="📲 扫码/远程网页导入"
+                android:textColor="#05D9E8"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Helper Hint Text -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="💡 提示: 遥控器 [上下键] 换台 • [菜单键/确定键] 呼出菜单"
+            android:textColor="#4DFFFFFF"
+            android:textSize="10sp"
+            android:layout_marginLeft="8dp" />
+
+    </LinearLayout>
+
+</LinearLayout>

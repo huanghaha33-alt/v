@@ -1,0 +1,6 @@
+{
+  "name": "TV Live",
+  "description": "Native Android TV player with mobile remote M3U8 source configuration over Wi-Fi.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

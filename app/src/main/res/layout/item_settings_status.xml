@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingVertical="10dp"
+    android:paddingHorizontal="14dp"
+    android:gravity="center_vertical"
+    android:background="#0AFFFFFF"
+    android:layout_marginBottom="6dp">
+
+    <!-- Channel Name -->
+    <TextView
+        android:id="@+id/tv_status_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="4"
+        android:text="CGTN 英文新闻直播"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:ellipsize="end"
+        android:singleLine="true" />
+
+    <!-- Regex Format Validation Badge -->
+    <TextView
+        android:id="@+id/tv_status_regex"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:text="✓ 格式正确"
+        android:textColor="#05D9E8"
+        android:textSize="12sp"
+        android:gravity="center" />
+
+    <!-- Live Connectivity Test Status Badge -->
+    <TextView
+        android:id="@+id/tv_status_connection"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:text="🟢 可播放"
+        android:textColor="#22C55E"
+        android:textSize="12sp"
+        android:gravity="right" />
+
+</LinearLayout>

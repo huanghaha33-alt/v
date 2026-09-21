@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Focused state: Solid vibrant blue background with a bright light-blue border -->
+    <item android:state_focused="true">
+        <shape android:shape="rectangle">
+            <solid android:color="#0066FF" />
+            <stroke android:width="3dp" android:color="#00D2FF" />
+            <corners android:radius="12dp" />
+        </shape>
+    </item>
+    
+    <!-- Selected/Active state (unfocused): Subtle semi-transparent blue background with a solid blue border -->
+    <item android:state_selected="true">
+        <shape android:shape="rectangle">
+            <solid android:color="#200066FF" />
+            <stroke android:width="1.5dp" android:color="#0066FF" />
+            <corners android:radius="12dp" />
+        </shape>
+    </item>
+    
+    <!-- Default (unfocused) state: Transparent -->
+    <item android:state_focused="false">
+        <shape android:shape="rectangle">
+            <solid android:color="@android:color/transparent" />
+        </shape>
+    </item>
+</selector>

@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:background="#0A0A0C"
+    android:padding="24dp"
+    android:weightSum="10">
+
+    <!-- Left Column: QR Code & IP Address (4.5 / 10 weight) -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="4.5"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="#15FFFFFF"
+        android:padding="20dp"
+        android:layout_marginRight="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="📲 扫码/远程网页导入"
+            android:textColor="#05D9E8"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.05"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="请使用手机/电脑浏览器扫描下方二维码进行配置"
+            android:textColor="#8AFFFFFF"
+            android:textSize="11sp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Glowing QR Code Frame -->
+        <FrameLayout
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:background="@drawable/video_container_border"
+            android:padding="6dp"
+            android:layout_marginBottom="16dp">
+
+            <ImageView
+                android:id="@+id/iv_remote_qr"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitCenter"
+                android:contentDescription="QR Code to Scan" />
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="或者在浏览器中手动输入地址："
+            android:textColor="#5AFFFFFF"
+            android:textSize="11sp"
+            android:layout_marginBottom="6dp" />
+
+        <!-- Giant address box -->
+        <TextView
+            android:id="@+id/tv_remote_address_giant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="http://获取IP中..."
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:fontFamily="monospace"
+            android:background="#20FFFFFF"
+            android:paddingHorizontal="14dp"
+            android:paddingVertical="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🟢 本地后台服务器已就绪，正在实时监听导入..."
+            android:textColor="#22C55E"
+            android:textSize="11sp"
+            android:layout_marginTop="12dp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <!-- Right Column: Instructions & Recently Imported (5.5 / 10 weight) -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="5.5"
+        android:orientation="vertical"
+        android:paddingHorizontal="12dp">
+
+        <!-- Title -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="📋 极简导入三步法 (LemonTV内置)"
+            android:textColor="#FF2A6D"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Step 1 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="12dp">
+            <TextView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="@drawable/step_circle"
+                android:text="1"
+                android:textColor="#0A0A0C"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:layout_marginRight="12dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="确保手机/电脑和电视连接在同一个 Wi-Fi 网络下"
+                android:textColor="#E2E8F0"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Step 2 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="12dp">
+            <TextView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="@drawable/step_circle"
+                android:text="2"
+                android:textColor="#0A0A0C"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:layout_marginRight="12dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="扫码或在手机浏览器中访问左侧的蓝色高亮网址"
+                android:textColor="#E2E8F0"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Step 3 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="16dp">
+            <TextView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="@drawable/step_circle"
+                android:text="3"
+                android:textColor="#0A0A0C"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:layout_marginRight="12dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="在网页上粘贴 M3U 播放列表，电视即可实时播放与保存！"
+                android:textColor="#E2E8F0"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Live Feed Title -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="📺 电视端已存频道列表 (实时同步网页添加)"
+            android:textColor="#8AFFFFFF"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Simple recycler view for real-time channels feed -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_import_feed"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:scrollbars="vertical"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Control buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="end">
+
+            <Button
+                android:id="@+id/btn_back_to_play"
+                android:layout_width="160dp"
+                android:layout_height="44dp"
+                android:text="进入播放 / 返回"
+                android:textColor="#FFFFFF"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:backgroundTint="#FF2A6D"
+                android:focusable="true"
+                android:clickable="true" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

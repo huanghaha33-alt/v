@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Focused state: Invert to dark color (high contrast on blue background) -->
+    <item android:state_focused="true" android:color="#0B0F19" />
+    
+    <!-- Selected state (but not focused) -->
+    <item android:state_selected="true" android:color="#05D9E8" />
+    
+    <!-- Default state: White -->
+    <item android:color="#FFFFFF" />
+</selector>

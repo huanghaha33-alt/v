@@ -1,0 +1,610 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:background="#121216"
+    android:padding="24dp"
+    android:weightSum="10">
+
+    <!-- Left Part: Scan QR Code & IP Remote Address (4/10 weight) -->
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="4"
+        android:background="#1AFFFFFF"
+        android:backgroundTint="#03FFFFFF"
+        android:layout_marginRight="16dp"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1. 扫码/远程导入"
+                android:textColor="#05D9E8"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.05" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="使用手机扫码或浏览器打开地址"
+                android:textColor="#8AFFFFFF"
+                android:textSize="11sp"
+                android:layout_marginTop="4dp" />
+
+            <!-- Dynamic QR Code Container with nice border -->
+            <FrameLayout
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:layout_marginVertical="10dp"
+                android:background="@drawable/video_container_border"
+                android:padding="6dp">
+
+                <ImageView
+                    android:id="@+id/iv_settings_qr"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitCenter"
+                    android:contentDescription="QR Code to Scan" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/tv_settings_remote_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="http://192.168.1.104:8080"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:fontFamily="monospace" />
+
+            <!-- Divider -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#1AFFFFFF"
+                android:layout_marginVertical="16dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2. 本地输入法导入"
+                android:textColor="#05D9E8"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp" />
+
+            <EditText
+                android:id="@+id/et_input_name"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/footer_bar_bg"
+                android:hint="输入频道名称 (例如: CCTV-1)"
+                android:textColorHint="#4DFFFFFF"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp"
+                android:paddingHorizontal="14dp"
+                android:singleLine="true"
+                android:layout_marginBottom="8dp" />
+
+            <EditText
+                android:id="@+id/et_input_url"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/footer_bar_bg"
+                android:hint="输入 M3U8/MP4 直播源 URL"
+                android:textColorHint="#4DFFFFFF"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp"
+                android:paddingHorizontal="14dp"
+                android:singleLine="true"
+                android:layout_marginBottom="12dp" />
+
+            <Button
+                android:id="@+id/btn_add_manual"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="确认添加此频道"
+                android:textSize="12sp"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#FF2A6D"
+                android:padding="0dp" />
+
+            <!-- Divider -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#1AFFFFFF"
+                android:layout_marginVertical="16dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3. 系统配置"
+                android:textColor="#05D9E8"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp" />
+
+            <Switch
+                android:id="@+id/sw_auto_start"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="开机自动启动 APP"
+                android:textColor="@color/tv_text_selector"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:focusable="true"
+                android:clickable="true"
+                android:background="@drawable/tv_item_selector"
+                android:padding="10dp"
+                android:layout_marginBottom="8dp" />
+
+            <Switch
+                android:id="@+id/sw_auto_sync_collect"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="启动时自动同步主备多线路源"
+                android:textColor="@color/tv_text_selector"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:focusable="true"
+                android:clickable="true"
+                android:background="@drawable/tv_item_selector"
+                android:padding="10dp"
+                android:layout_marginBottom="8dp" />
+
+            <Switch
+                android:id="@+id/sw_periodic_sync_github"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="12小时定时自动更新 GitHub 电视源"
+                android:textColor="@color/tv_text_selector"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:focusable="true"
+                android:clickable="true"
+                android:background="@drawable/tv_item_selector"
+                android:padding="10dp"
+                android:layout_marginBottom="8dp" />
+
+            <Switch
+                android:id="@+id/sw_auto_clean_expired"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="定时检测并自动清理失效源"
+                android:textColor="@color/tv_text_selector"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:focusable="true"
+                android:clickable="true"
+                android:background="@drawable/tv_item_selector"
+                android:padding="10dp"
+                android:layout_marginBottom="12dp" />
+
+            <Button
+                android:id="@+id/btn_sync_collect_now"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="立即同步主备多线路节目源"
+                android:textSize="12sp"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#05D9E8"
+                android:padding="0dp"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Divider -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#1AFFFFFF"
+                android:layout_marginVertical="16dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4. 视频解码与播放优化"
+                android:textColor="#05D9E8"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp" />
+
+            <Switch
+                android:id="@+id/sw_decoder_hardware"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="硬解优先 (硬件解码加速)"
+                android:textColor="@color/tv_text_selector"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:focusable="true"
+                android:clickable="true"
+                android:background="@drawable/tv_item_selector"
+                android:padding="10dp"
+                android:layout_marginBottom="8dp" />
+
+            <Switch
+                android:id="@+id/sw_buffer_low_latency"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="极速秒开 (旧版低延迟缓冲优化)"
+                android:textColor="@color/tv_text_selector"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:focusable="true"
+                android:clickable="true"
+                android:background="@drawable/tv_item_selector"
+                android:padding="10dp"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Section 5: LemonTV Premium Configurations -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5. LemonTV 智优高阶设置"
+                android:textColor="#05D9E8"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="10dp" />
+
+            <!-- sp_source_mode -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:focusable="true"
+                android:clickable="true"
+                android:background="@drawable/tv_item_selector"
+                android:padding="10dp"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="首选内置节目源"
+                    android:textColor="@color/tv_text_selector"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/sp_source_mode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent" />
+            </LinearLayout>
+
+            <!-- sp_buffer_mode -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:focusable="true"
+                android:clickable="true"
+                android:background="@drawable/tv_item_selector"
+                android:padding="10dp"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="播放缓冲加载模式"
+                    android:textColor="@color/tv_text_selector"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/sp_buffer_mode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent" />
+            </LinearLayout>
+
+            <!-- sp_stall_timeout -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:focusable="true"
+                android:clickable="true"
+                android:background="@drawable/tv_item_selector"
+                android:padding="10dp"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="线路卡顿自动重连/切换"
+                    android:textColor="@color/tv_text_selector"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/sp_stall_timeout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent" />
+            </LinearLayout>
+
+            <!-- sw_channel_filter_mode -->
+            <Switch
+                android:id="@+id/sw_channel_filter_mode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="智能画质极剪 (过滤省份/地方小台)"
+                android:textColor="@color/tv_text_selector"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:focusable="true"
+                android:clickable="true"
+                android:background="@drawable/tv_item_selector"
+                android:padding="10dp"
+                android:layout_marginBottom="12dp" />
+
+            <Button
+                android:id="@+id/btn_refresh_player_now"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="⚡ 立即清空缓存并刷新解码"
+                android:textSize="12sp"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#FF2A6D"
+                android:padding="0dp"
+                android:layout_marginBottom="8dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Right Part: Import Situation Visualization & Testing List (6/10 weight) -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="6"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="直播源导入可视化大盘"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_alignParentLeft="true" />
+
+            <Button
+                android:id="@+id/btn_retest_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🔄 重新检测全部"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp"
+                android:backgroundTint="#FF2A6D"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true" />
+        </RelativeLayout>
+
+        <!-- Visualization Cards / Stats row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp"
+            android:weightSum="4">
+
+            <!-- Stat 1: Total -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="#15FFFFFF"
+                android:padding="12dp"
+                android:layout_marginRight="6dp">
+
+                <TextView
+                    android:id="@+id/tv_stat_total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textColor="#FFFFFF"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="总频道数"
+                    android:textColor="#8AFFFFFF"
+                    android:textSize="11sp"
+                    android:layout_marginTop="2dp" />
+            </LinearLayout>
+
+            <!-- Stat 2: Regex Valid -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="#15FFFFFF"
+                android:padding="12dp"
+                android:layout_marginHorizontal="3dp">
+
+                <TextView
+                    android:id="@+id/tv_stat_valid_format"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textColor="#05D9E8"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="格式正确"
+                    android:textColor="#8AFFFFFF"
+                    android:textSize="11sp"
+                    android:layout_marginTop="2dp" />
+            </LinearLayout>
+
+            <!-- Stat 3: Online -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="#15FFFFFF"
+                android:padding="12dp"
+                android:layout_marginHorizontal="3dp">
+
+                <TextView
+                    android:id="@+id/tv_stat_online"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textColor="#22C55E"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🟢 可播放"
+                    android:textColor="#8AFFFFFF"
+                    android:textSize="11sp"
+                    android:layout_marginTop="2dp" />
+            </LinearLayout>
+
+            <!-- Stat 4: Offline -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="#15FFFFFF"
+                android:padding="12dp"
+                android:layout_marginLeft="6dp">
+
+                <TextView
+                    android:id="@+id/tv_stat_offline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textColor="#FF2A6D"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🔴 无法使用"
+                    android:textColor="#8AFFFFFF"
+                    android:textSize="11sp"
+                    android:layout_marginTop="2dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Online Subscription Management Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#15FFFFFF"
+            android:padding="8dp"
+            android:layout_marginBottom="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="6dp">
+
+                <TextView
+                    android:id="@+id/tv_subscription_info"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="未配置在线订阅源"
+                    android:textColor="#8AFFFFFF"
+                    android:textSize="11sp"
+                    android:ellipsize="middle"
+                    android:singleLine="true"
+                    android:layout_marginRight="8dp" />
+
+                <Button
+                    android:id="@+id/btn_sync_refresh"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:text="🔄 一键更新订阅"
+                    android:textColor="#FFFFFF"
+                    android:textSize="11sp"
+                    android:backgroundTint="#05D9E8"
+                    android:padding="0dp"
+                    android:minHeight="0dp" />
+            </LinearLayout>
+
+            <!-- Custom Canvas Scrolling Log Terminal -->
+            <com.example.ScrollingLogCanvasView
+                android:id="@+id/view_scrolling_terminal"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <!-- Subheader for live lists -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="各频道详细连通性及正则格式校验："
+            android:textColor="#5AFFFFFF"
+            android:textSize="12sp"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Container for status reports -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_settings_status"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:scrollbars="vertical"
+            android:fadeScrollbars="false" />
+
+        <!-- Confirm Close Button -->
+        <Button
+            android:id="@+id/btn_close_settings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="返回播放界面"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#20FFFFFF"
+            android:layout_marginTop="12dp" />
+    </LinearLayout>
+
+</LinearLayout>
